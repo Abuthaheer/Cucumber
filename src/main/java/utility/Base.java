@@ -1,4 +1,4 @@
-package org.utility;
+package utility;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -9,6 +9,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -248,4 +253,35 @@ public class Base {
 		return mapDatasList;
 
 	}
+
+	public static List<Employee> retriveValueFromDataBase() {
+		ResultSet rs = null;
+		List<Employee> emp = new ArrayList<Employee>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection con = DriverManager.getConnection(
+					"jdbc:mysql://127.0.0.1:3306/selenium_schema", "root", "");
+			PreparedStatement ps = con
+					.prepareStatement("SELECT * FROM selenium_schema.employee_table where empid=3;");
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Employee e = new Employee();
+				e.setName(rs.getString("name"));
+				e.setPassword(rs.getString("password"));
+				emp.add(e);
+
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return emp;
+
+	}
+
 }
