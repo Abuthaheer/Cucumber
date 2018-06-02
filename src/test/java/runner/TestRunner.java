@@ -6,7 +6,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "Features", glue = "steps")
+@CucumberOptions(features = "Features", glue = "steps", dryRun = false, plugin = {"pretty","html:Folder name/report/cucumber"})
 public class TestRunner {
 
 }

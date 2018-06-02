@@ -36,7 +36,7 @@ public class BasePage {
 			//	System.setProperty("webdriver.chrome.driver", f.getAbsolutePath()
 		//				+ "/chromedriver.exe");
 				
-				System.setProperty("webdriver.chrome.driver", "/Users/WK/git/Cucumber/driver/chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", "C:\\Users\\USER\\Downloads\\chromedriver.exe");
 				driver = new ChromeDriver();
 
 			} else if (browser.equals("firefox")) {
@@ -51,7 +51,8 @@ public class BasePage {
 			}
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-			driver.get(jsonObject.get("URL").getAsString());
+		//	driver.get(jsonObject.get("URL").getAsString());
+			driver.get("http://newtours.demoaut.com/");
 
 		}
 	}
